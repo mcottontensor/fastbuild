@@ -1,7 +1,9 @@
 // Visual Studio 2019
 //------------------------------------------------------------------------------
-.VS2019_BasePath         = '$_CURRENT_BFF_DIR_$/2019/Community'
-.VS2019_Version          = '14.22.27905'
+#import VCToolsVersion
+#import VSINSTALLDIR
+.VS2019_BasePath         = .VSINSTALLDIR
+.VS2019_Version          = .VCToolsVersion
 
 // X64 Compiler
 //------------------------------------------------------------------------------
@@ -31,6 +33,7 @@ Compiler( 'Compiler-VS2019-x64' )
 
 // X64 ToolChain for Windows
 //------------------------------------------------------------------------------
+#import INCLUDE
 .ToolChain_VS2019_Windows_X64 =
 [
     .Platform                       = 'x64'
@@ -49,7 +52,7 @@ Compiler( 'Compiler-VS2019-x64' )
 
                                     // Warnings
                                     + ' /Wall'              // Enable all warnings (we'll disable those that are not useful)
-                                    + ' /WX'                // Warnings as errors
+                                    //+ ' /WX'                // Warnings as errors
 
                                     // These warnings are useful, but fire in system headers (Windows SDK or MSVC CRT)
                                     + ' /wd4668' // '%s' is not defined as a preprocessor macro, replacing with '0' for '#if/#elif'
